@@ -11,17 +11,12 @@ namespace Manulife.TopFiveWebsites.Repository
 {
     public class GenericRepository : IGenericRepository
     {
-        private readonly TopFiveWebsitesEntities _entities;
+        protected readonly TopFiveWebsitesEntities _entities;
 
         public GenericRepository(TopFiveWebsitesEntities entities)
         {
             _entities = entities;
             _entities.Database.CommandTimeout = 60;
-        }
-
-        protected TopFiveWebsitesEntities Entities
-        {
-            get { return _entities; }
         }
 
         public int SaveChanges()

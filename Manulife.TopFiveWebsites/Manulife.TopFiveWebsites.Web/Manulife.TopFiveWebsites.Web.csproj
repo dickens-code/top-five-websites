@@ -55,6 +55,9 @@
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,6 +149,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\NinjectProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,6 +217,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Entity\Manulife.TopFiveWebsites.Entity.csproj">
+      <Project>{7b4a9d0e-e5f4-4b5c-bf2e-b0b4c493c4bd}</Project>
+      <Name>Manulife.TopFiveWebsites.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Repository\Manulife.TopFiveWebsites.Repository.csproj">
+      <Project>{39aaf113-2476-4be6-a10f-b6c31180c561}</Project>
+      <Name>Manulife.TopFiveWebsites.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Service\Manulife.TopFiveWebsites.Service.csproj">
+      <Project>{5349f536-2393-4a53-b7a7-731236c7c2bb}</Project>
+      <Name>Manulife.TopFiveWebsites.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
