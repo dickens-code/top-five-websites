@@ -72,6 +72,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
                 new List<VisitLog>
                 {
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.google.com", visits = 3 },
+                    new VisitLog { date = new DateTime(2016, 1, 7), website = "www.google.com", visits = 10000000 },
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.yahoo.com", visits = 100001 },
                     new VisitLog { date = new DateTime(2016, 1, 2), website = "www.yahoo.com", visits = 5 },
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.goodluck.com", visits = 100005 },
