@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,10 +50,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopFiveWebsitesEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopFiveWebsitesEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TopFiveWebsitesEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopFiveWebsitesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TopFiveWebsitesEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopFiveWebsitesEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>TopFiveWebsitesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisitLog.cs">
+      <DependentUpon>TopFiveWebsitesEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="TopFiveWebsitesEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TopFiveWebsitesEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TopFiveWebsitesEntities.edmx.diagram">
+      <DependentUpon>TopFiveWebsitesEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TopFiveWebsitesEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TopFiveWebsitesEntities.edmx</DependentUpon>
+      <LastGenOutput>TopFiveWebsitesEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TopFiveWebsitesEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TopFiveWebsitesEntities.edmx</DependentUpon>
+      <LastGenOutput>TopFiveWebsitesEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
