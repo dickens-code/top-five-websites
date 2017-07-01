@@ -22,7 +22,7 @@ namespace Manulife.TopFiveWebsites.Service
         {
             //render as sql: SUM(...) GROUP BY ...
             return _repository.GetEntities<VisitLog>().Where(l => l.date <= date.Date)
-                .GroupBy(k => k.website)
+                .GroupBy(k => k.website.ToLower())
                 .Select(g => new AggregateRecord { Website = g.Key, TotalVisits = g.Sum(v => v.visits) })
                 .OrderByDescending(r => r.TotalVisits)
                 .Take(topX)
