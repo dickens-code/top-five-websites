@@ -8,7 +8,7 @@ namespace Manulife.TopFiveWebsites.Service
 {
     public interface ISearchService
     {
-        IList<AggregateRecord> AggregateByDate(DateTime date, int topX);
-        IList<AggregateRecord> AggregateByWebsite(string website, int topX);
+        IList<WebsiteStatistics> AggregateByDate(DateTime date, int topX);
+        IList<WebsiteStatistics> AggregateByWebsite(string website, int topX);
     }
 }

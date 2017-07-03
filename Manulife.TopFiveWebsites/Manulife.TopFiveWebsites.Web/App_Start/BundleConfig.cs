@@ -26,6 +26,12 @@ namespace Manulife.TopFiveWebsites.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/search.listtopwebsites").Include("~/Scripts/search.listtopwebsites.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include("~/Scripts/datatables.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css/datatables").Include("~/Content/datatables.css"));
         }
     }
 }

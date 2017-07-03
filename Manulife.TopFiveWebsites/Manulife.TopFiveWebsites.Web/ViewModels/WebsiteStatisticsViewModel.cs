@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Manulife.TopFiveWebsites.Service
+namespace Manulife.TopFiveWebsites.Web.ViewModels
 {
-    public class AggregateRecord
+    public class WebsiteStatisticsViewModel
     {
         public DateTime Date { get; set; }
         public string Website { get; set; }
