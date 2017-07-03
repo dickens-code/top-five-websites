@@ -8,9 +8,9 @@
         searchDelay: 700,
         ajax: "/Search/GetTopWebsites",
         columns: [
-            { data: "Date" },
+            { data: "Date", type: "date" },
             { data: "Website" },
-            { data: "TotalVisits" },
+            { data: "TotalVisits", type: "num-fmt" },
         ]
 	});
 });

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Manulife.TopFiveWebsites.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         public ActionResult Index()
         {

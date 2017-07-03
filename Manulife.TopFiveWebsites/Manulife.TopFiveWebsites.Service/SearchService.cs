@@ -23,7 +23,7 @@ namespace Manulife.TopFiveWebsites.Service
             //render as sql: SUM(...) GROUP BY ...
             return _repository.GetEntities<VisitLog>().Where(l => l.date <= date.Date)
                 .GroupBy(k => k.website.ToLower())
-                .Select(g => new WebsiteStatistics { Website = g.Key, TotalVisits = g.Sum(v => v.visits) })
+                .Select(g => new WebsiteStatistics { Date = date.Date, Website = g.Key, TotalVisits = g.Sum(v => v.visits) })
                 .OrderByDescending(r => r.TotalVisits)
                 .Take(topX)
                 .ToList();
@@ -34,7 +34,7 @@ namespace Manulife.TopFiveWebsites.Service
             //render as sql: SUM(...) GROUP BY ...
             return _repository.GetEntities<VisitLog>().Where(l => string.Compare(l.website, website, true) == 0)
                 .GroupBy(k => k.date.Date)
-                .Select(g => new WebsiteStatistics { Date = g.Key, TotalVisits = g.Sum(v => v.visits) })
+                .Select(g => new WebsiteStatistics { Date = g.Key, Website = website.ToLower(), TotalVisits = g.Sum(v => v.visits) })
                 .OrderByDescending(r => r.TotalVisits)
                 .Take(topX)
                 .ToList();
