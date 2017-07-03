@@ -36,7 +36,11 @@ namespace Manulife.TopFiveWebsites.Web
                       "~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/search.listtopwebsites").Include(
+                "~/Scripts/bootstrap-datetimepicker.js",
                 "~/Scripts/search.listtopwebsites.js"));
+
+            bundles.Add(new StyleBundle("~/Content/search.listtopwebsites").Include(
+                      "~/Content/bootstrap-datetimepicker.css"));
 
             //bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
             //    "~/Scripts/datatables.js"));
