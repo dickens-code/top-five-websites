@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 using Manulife.TopFiveWebsites.Entity;
-using System.Data.Entity;
 
 namespace Manulife.TopFiveWebsites.Repository
 {
-    public class GenericRepository : IGenericRepository
+    public class DataStoreRepository : IDataStoreRepository
     {
         protected readonly TopFiveWebsitesEntities _entities;
 
-        public GenericRepository(TopFiveWebsitesEntities entities)
+        public DataStoreRepository(TopFiveWebsitesEntities entities)
         {
             _entities = entities;
             _entities.Database.CommandTimeout = 60;
@@ -27,11 +27,6 @@ namespace Manulife.TopFiveWebsites.Repository
         public IQueryable<T> GetEntities<T>() where T : class
         {
             return _entities.Set<T>();
-        }
-
-        public IEnumerable<T> GetEntities<T>(string sql, params object[] parameters) where T : class
-        {
-            return _entities.Set<T>().SqlQuery(sql, parameters).ToList();
         }
 
         public void AddEntity<T>(T entity) where T : class

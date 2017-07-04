@@ -16,7 +16,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_SingleWebsiteInMultipleDates_ReturnsTotalBeforeCriteriaDate()
         {
-            var genericRepositoryMock = new Mock<IGenericRepository>();
+            var genericRepositoryMock = new Mock<IReadonlyRepository>();
             genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
@@ -38,7 +38,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleWebsitesInSingleDate_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IGenericRepository>();
+            var genericRepositoryMock = new Mock<IReadonlyRepository>();
             genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
@@ -67,7 +67,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleCasesWebsitesInSingleDate_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IGenericRepository>();
+            var genericRepositoryMock = new Mock<IReadonlyRepository>();
             genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
@@ -96,7 +96,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleWebsitesInMultipleDates_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IGenericRepository>();
+            var genericRepositoryMock = new Mock<IReadonlyRepository>();
             genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {

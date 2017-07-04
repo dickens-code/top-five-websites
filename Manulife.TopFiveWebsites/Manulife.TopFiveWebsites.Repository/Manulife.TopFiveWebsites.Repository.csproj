@@ -47,8 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericRepository.cs" />
-    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="DataStoreRepository.cs" />
+    <Compile Include="ExclusionEntry.cs" />
+    <Compile Include="ExclusionEntryRepository.cs" />
+    <Compile Include="IDataStoreRepository.cs" />
+    <Compile Include="IExclusionEntryRepository.cs" />
+    <Compile Include="IWriteableRepository.cs" />
+    <Compile Include="IReadonlyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

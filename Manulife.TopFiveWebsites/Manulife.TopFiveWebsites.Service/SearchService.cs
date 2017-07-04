@@ -11,9 +11,9 @@ namespace Manulife.TopFiveWebsites.Service
 {
     public class SearchService : ISearchService
     {
-        protected IGenericRepository _repository;
+        protected IReadonlyRepository _repository;
 
-        public SearchService(IGenericRepository repository)
+        public SearchService(IReadonlyRepository repository)
         {
             _repository = repository;
         }

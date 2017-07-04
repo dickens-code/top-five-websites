@@ -18,7 +18,8 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
             Bind<TopFiveWebsitesEntities>().ToSelf().InRequestScope();
             Bind<ISearchService>().To<SearchService>().InRequestScope();
             Bind<IVisitLogService>().To<VisitLogService>().InRequestScope();
-            Bind<IGenericRepository>().To<GenericRepository>().InRequestScope();
+            Bind<IDataStoreRepository>().To<DataStoreRepository>().InRequestScope();
+            Bind<IExclusionEntryRepository>().To<ExclusionEntryRepository>().InRequestScope();
         }
     }
 }
