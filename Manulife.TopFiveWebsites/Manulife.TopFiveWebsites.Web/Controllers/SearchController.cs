@@ -11,10 +11,12 @@ namespace Manulife.TopFiveWebsites.Web.Controllers
     public class SearchController : ControllerBase
     {
         private readonly ISearchService _searchService;
+        private readonly IVisitLogService _visitLogService;
 
-        public SearchController(ISearchService searchServie)
+        public SearchController(ISearchService searchServie, IVisitLogService visitLogService)
         {
             _searchService = searchServie;
+            _visitLogService = visitLogService;
         }
 
         public ActionResult ListTopWebsites()
@@ -28,6 +30,9 @@ namespace Manulife.TopFiveWebsites.Web.Controllers
             DateTime searchDate;
             if (!DateTime.TryParse(request.Search.Value, out searchDate))
                 searchDate = DateTime.Now.Date;
+
+            //persist exclusion entries to db so as to leverage db-side optimization
+            _visitLogService.PersistExclusionEntries();
 
             //search top websites
             var result = _searchService.AggregateByDate(searchDate, request.Length);

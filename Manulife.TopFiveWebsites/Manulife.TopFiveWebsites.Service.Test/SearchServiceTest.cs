@@ -16,8 +16,8 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_SingleWebsiteInMultipleDates_ReturnsTotalBeforeCriteriaDate()
         {
-            var genericRepositoryMock = new Mock<IReadonlyRepository>();
-            genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
                     new VisitLog { date = new DateTime(2016, 1, 1), website = "www.google.com", visits = 1000 },
@@ -26,7 +26,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
                     new VisitLog { date = new DateTime(2016, 1, 4), website = "www.google.com", visits = 1000000 },
                 }.AsQueryable());
 
-            var searchService = new SearchService(genericRepositoryMock.Object);
+            var searchService = new SearchService(dataStoreRepositoryMock.Object);
 
             var aggregateRecord = searchService.AggregateByDate(new DateTime(2016, 1, 3), 5);
 
@@ -38,8 +38,8 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleWebsitesInSingleDate_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IReadonlyRepository>();
-            genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.google.com", visits = 3 },
@@ -51,7 +51,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.gobackward.com", visits = 100000 },
                 }.AsQueryable());
 
-            var searchService = new SearchService(genericRepositoryMock.Object);
+            var searchService = new SearchService(dataStoreRepositoryMock.Object);
 
             var aggregateRecord = searchService.AggregateByDate(new DateTime(2016, 1, 6), 3);
 
@@ -67,8 +67,8 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleCasesWebsitesInSingleDate_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IReadonlyRepository>();
-            genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.google.com", visits = 3 },
@@ -80,7 +80,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.gobackward.com", visits = 100000 },
                 }.AsQueryable());
 
-            var searchService = new SearchService(genericRepositoryMock.Object);
+            var searchService = new SearchService(dataStoreRepositoryMock.Object);
 
             var aggregateRecord = searchService.AggregateByDate(new DateTime(2016, 1, 6), 3);
 
@@ -96,8 +96,8 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod()]
         public void AggregateByDate_MultipleWebsitesInMultipleDates_ReturnsTopThree()
         {
-            var genericRepositoryMock = new Mock<IReadonlyRepository>();
-            genericRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
                 new List<VisitLog>
                 {
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.google.com", visits = 3 },
@@ -110,7 +110,7 @@ namespace Manulife.TopFiveWebsites.Service.Test
                     new VisitLog { date = new DateTime(2016, 1, 6), website = "www.gobackward.com", visits = 100000 },
                 }.AsQueryable());
 
-            var searchService = new SearchService(genericRepositoryMock.Object);
+            var searchService = new SearchService(dataStoreRepositoryMock.Object);
 
             var aggregateRecord = searchService.AggregateByDate(new DateTime(2016, 1, 6), 3);
 
@@ -121,6 +121,45 @@ namespace Manulife.TopFiveWebsites.Service.Test
             Assert.AreEqual(100007, aggregateRecord[1].TotalVisits);
             Assert.AreEqual("www.yahoo.com", aggregateRecord[2].Website);
             Assert.AreEqual(100006, aggregateRecord[2].TotalVisits);
+        }
+
+        [TestMethod()]
+        public void AggregateByDate_MultipleWebsitesInMultipleDatesAndExclusion_ReturnsTopThree()
+        {
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLog>()).Returns(
+                new List<VisitLog>
+                {
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.google.com", visits = 3 },
+                    new VisitLog { date = new DateTime(2016, 1, 7), website = "www.google.com", visits = 10000000 },
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.yahoo.com", visits = 100002 },
+                    new VisitLog { date = new DateTime(2016, 1, 2), website = "www.yahoo.com", visits = 5 },
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.goodluck.com", visits = 100001 },
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.badluck.com", visits = 100007 },
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.goforward.com", visits = 100009 },
+                    new VisitLog { date = new DateTime(2016, 1, 6), website = "www.gobackward.com", visits = 100000 },
+                }.AsQueryable());
+            dataStoreRepositoryMock.Setup(x => x.GetEntities<VisitLogExclusion>()).Returns(
+                new List<VisitLogExclusion>
+                {
+                    new VisitLogExclusion { host = "www.yahoo.com", excludedSince = new DateTime(2016, 1, 2), excludedTill = new DateTime(2016, 1, 2)},
+                    new VisitLogExclusion { host = "www.goodluck.com", excludedSince = new DateTime(2016, 1, 2)}
+                }
+                .AsQueryable());
+
+            var searchService = new SearchService(dataStoreRepositoryMock.Object);
+
+            var aggregateRecord = searchService.AggregateByDate(new DateTime(2016, 1, 6), 4);
+
+            Assert.AreEqual(4, aggregateRecord.Count);
+            Assert.AreEqual("www.goforward.com", aggregateRecord[0].Website);
+            Assert.AreEqual(100009, aggregateRecord[0].TotalVisits);
+            Assert.AreEqual("www.badluck.com", aggregateRecord[1].Website);
+            Assert.AreEqual(100007, aggregateRecord[1].TotalVisits);
+            Assert.AreEqual("www.yahoo.com", aggregateRecord[2].Website);
+            Assert.AreEqual(100002, aggregateRecord[2].TotalVisits);
+            Assert.AreEqual("www.gobackward.com", aggregateRecord[3].Website);
+            Assert.AreEqual(100000, aggregateRecord[3].TotalVisits);
         }
     }
 }

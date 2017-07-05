@@ -27,5 +27,6 @@ namespace Manulife.TopFiveWebsites.Entity
     
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<VisitLog> VisitLogs { get; set; }
+        public virtual DbSet<VisitLogExclusion> VisitLogExclusions { get; set; }
     }
 }

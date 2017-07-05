@@ -9,6 +9,5 @@ namespace Manulife.TopFiveWebsites.Service
     public interface ISearchService
     {
         IList<WebsiteStatistics> AggregateByDate(DateTime date, int topX);
-        IList<WebsiteStatistics> AggregateByWebsite(string website, int topX);
     }
 }

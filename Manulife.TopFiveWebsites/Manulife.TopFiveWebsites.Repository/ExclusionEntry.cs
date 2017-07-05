@@ -9,7 +9,7 @@ namespace Manulife.TopFiveWebsites.Repository
     public class ExclusionEntry
     {
         public string host { get; set; }
-        public DateTime excludedSince { get; set; }
-        public DateTime excludedTill { get; set; }
+        public DateTime? excludedSince { get; set; }
+        public DateTime? excludedTill { get; set; }
     }
 }

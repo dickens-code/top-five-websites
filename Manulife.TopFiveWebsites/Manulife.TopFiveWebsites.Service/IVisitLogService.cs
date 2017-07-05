@@ -8,5 +8,6 @@ namespace Manulife.TopFiveWebsites.Service
 {
     public interface IVisitLogService
     {
+        void PersistExclusionEntries();
     }
 }

@@ -71,6 +71,9 @@
     <Compile Include="VisitLog.cs">
       <DependentUpon>TopFiveWebsitesEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="VisitLogExclusion.cs">
+      <DependentUpon>TopFiveWebsitesEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

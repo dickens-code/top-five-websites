@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TopFiveWebsitesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TopFiveWebsitesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="userId" />
@@ -30,12 +30,23 @@
           <Property Name="modifiedBy" Type="varchar" MaxLength="255" />
           <Property Name="modifiedOn" Type="datetime2" Precision="7" />
         </EntityType>
+        <EntityType Name="VisitLogExclusion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="host" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="excludedSince" Type="datetime2" Precision="7" />
+          <Property Name="excludedTill" Type="datetime2" Precision="7" />
+          <Property Name="createdBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="createdOn" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="TopFiveWebsitesModelStoreContainer">
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitLog" EntityType="Self.VisitLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitLogExclusion" EntityType="Self.VisitLogExclusion" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TopFiveWebsitesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -67,7 +78,19 @@
         <EntityContainer Name="TopFiveWebsitesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
           <EntitySet Name="VisitLogs" EntityType="Self.VisitLog" />
+          <EntitySet Name="VisitLogExclusions" EntityType="TopFiveWebsitesModel.VisitLogExclusion" />
         </EntityContainer>
+        <EntityType Name="VisitLogExclusion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="host" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="excludedSince" Type="DateTime" Precision="7" />
+          <Property Name="excludedTill" Type="DateTime" Precision="7" />
+          <Property Name="createdBy" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -98,6 +121,18 @@
                 <ScalarProperty Name="createdOn" ColumnName="createdOn" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="modifiedOn" ColumnName="modifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitLogExclusions">
+            <EntityTypeMapping TypeName="TopFiveWebsitesModel.VisitLogExclusion">
+              <MappingFragment StoreEntitySet="VisitLogExclusion">
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="excludedTill" ColumnName="excludedTill" />
+                <ScalarProperty Name="excludedSince" ColumnName="excludedSince" />
+                <ScalarProperty Name="host" ColumnName="host" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

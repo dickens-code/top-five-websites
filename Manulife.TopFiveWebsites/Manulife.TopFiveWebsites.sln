@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manulife.TopFiveWebsites.En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manulife.TopFiveWebsites.Service.Test", "Manulife.TopFiveWebsites.Service.Test\Manulife.TopFiveWebsites.Service.Test.csproj", "{EB526109-9FB2-4F85-AA45-5835E5B9FBBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manulife.TopFiveWebsites.Repository.Test", "Manulife.TopFiveWebsites.Repository.Test\Manulife.TopFiveWebsites.Repository.Test.csproj", "{9DF5FC94-6533-4348-A814-8B47D6FC14A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EB526109-9FB2-4F85-AA45-5835E5B9FBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB526109-9FB2-4F85-AA45-5835E5B9FBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB526109-9FB2-4F85-AA45-5835E5B9FBBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF5FC94-6533-4348-A814-8B47D6FC14A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF5FC94-6533-4348-A814-8B47D6FC14A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF5FC94-6533-4348-A814-8B47D6FC14A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF5FC94-6533-4348-A814-8B47D6FC14A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

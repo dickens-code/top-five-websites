@@ -7,6 +7,7 @@
       <Diagram DiagramId="64c6f8ad5b1f407abe0b58ca1bd53b70" Name="Diagram1">
         <EntityTypeShape EntityType="TopFiveWebsitesModel.UserProfile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TopFiveWebsitesModel.VisitLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopFiveWebsitesModel.VisitLogExclusion" Width="1.5" PointX="4.875" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
