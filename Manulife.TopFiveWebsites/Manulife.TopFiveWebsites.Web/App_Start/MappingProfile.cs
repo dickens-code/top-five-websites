@@ -20,6 +20,10 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
             CreateMap<ExclusionEntry, VisitLogExclusion>()
                 .ForMember(dest => dest.createdBy, opt => opt.UseValue("webappuser"))
                 .ForMember(dest => dest.createdOn, opt => opt.UseValue(DateTime.Now));
+            CreateMap<UserProfile, User>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.userId))
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.password))
+                .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.roles));
         }
     }
 }

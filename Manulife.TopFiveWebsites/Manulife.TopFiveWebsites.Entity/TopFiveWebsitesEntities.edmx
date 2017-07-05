@@ -11,6 +11,7 @@
           </Key>
           <Property Name="userId" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="roles" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="createdBy" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="createdOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -61,6 +62,7 @@
           <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="modifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="modifiedOn" Type="DateTime" Precision="7" />
+          <Property Name="roles" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VisitLog">
           <Key>
@@ -100,6 +102,7 @@
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="TopFiveWebsitesModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="roles" ColumnName="roles" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />

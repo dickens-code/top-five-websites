@@ -22,6 +22,7 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
             Bind<IDataStoreRepository>().To<DataStoreRepository>().InRequestScope();
             Bind<IExclusionEntryRepository>().To<ExclusionEntryRepository>().InRequestScope();
             Bind<IRestClient>().To<RestClient>().InRequestScope();
+            Bind<ILoginService>().To<LoginService>().InRequestScope();
         }
     }
 }

@@ -21,5 +21,6 @@ namespace Manulife.TopFiveWebsites.Entity
         public System.DateTime createdOn { get; set; }
         public string modifiedBy { get; set; }
         public Nullable<System.DateTime> modifiedOn { get; set; }
+        public string roles { get; set; }
     }
 }
