@@ -46,7 +46,7 @@ namespace Manulife.TopFiveWebsites.Repository
 
         public void TruncateStore<T>() where T : class
         {
-            _entities.Database.ExecuteSqlCommand($"TRUNCATE TABLE {nameof(T)}");
+            _entities.Database.ExecuteSqlCommand($"TRUNCATE TABLE {typeof(T).Name}");
         }
     }
 }

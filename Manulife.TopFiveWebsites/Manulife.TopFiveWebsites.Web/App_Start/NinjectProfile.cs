@@ -8,6 +8,7 @@ using Ninject.Web.Common;
 using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Service;
 using Manulife.TopFiveWebsites.Repository;
+using RestSharp;
 
 namespace Manulife.TopFiveWebsites.Web.App_Start
 {
@@ -20,6 +21,7 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
             Bind<IVisitLogService>().To<VisitLogService>().InRequestScope();
             Bind<IDataStoreRepository>().To<DataStoreRepository>().InRequestScope();
             Bind<IExclusionEntryRepository>().To<ExclusionEntryRepository>().InRequestScope();
+            Bind<IRestClient>().To<RestClient>().InRequestScope();
         }
     }
 }

@@ -16,8 +16,10 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
         public MappingProfile()
         {
             CreateMap<WebsiteStatistics, WebsiteStatisticsViewModel>()
-                .ForMember(vm => vm.Date, opt => opt.MapFrom(x => x.Date.Date));
-            CreateMap<ExclusionEntry, VisitLogExclusion>();
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.Date));
+            CreateMap<ExclusionEntry, VisitLogExclusion>()
+                .ForMember(dest => dest.createdBy, opt => opt.UseValue("webappuser"))
+                .ForMember(dest => dest.createdOn, opt => opt.UseValue(DateTime.Now));
         }
     }
 }

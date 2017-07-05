@@ -21,12 +21,15 @@ namespace Manulife.TopFiveWebsites.Service
 
         public IList<WebsiteStatistics> AggregateByDate(DateTime date, int topX)
         {
+            var visitLogEntities = _dataStoreRepository.GetEntities<VisitLog>();
+            var visitLogExclusionEntities = _dataStoreRepository.GetEntities<VisitLogExclusion>();
+
             //filter out invalid logs
-            var validLogs = from log in _dataStoreRepository.GetEntities<VisitLog>()
-                    where log.date <= date.Date
-                        && ! _dataStoreRepository.GetEntities<VisitLogExclusion>().Any(
-                            ex => ex.host == log.website && (ex.excludedSince ?? DateTime.MinValue) <= log.date && (ex.excludedTill ?? DateTime.MaxValue) >= log.date)
-                    select log;
+            var validLogs = from log in visitLogEntities
+                            where log.date <= date.Date
+                                && !visitLogExclusionEntities.Any(
+                                    ex => ex.host == log.website && (ex.excludedSince ?? DateTime.MinValue) <= log.date && (ex.excludedTill ?? DateTime.MaxValue) >= log.date)
+                            select log;
 
             //aggregate logs with sum
             var statisticsGroup = from log in validLogs
