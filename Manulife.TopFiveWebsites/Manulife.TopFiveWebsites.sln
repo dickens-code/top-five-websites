@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manulife.TopFiveWebsites.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manulife.TopFiveWebsites.DataImporter", "Manulife.TopFiveWebsites.DataImporter\Manulife.TopFiveWebsites.DataImporter.csproj", "{6CCBE4AC-BC76-4F84-A2D9-AC2DC17DAE4C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{77ECE208-F3B3-4795-BC94-F3296339462E}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+		..\TopFiveWebsites.20170707.sql = ..\TopFiveWebsites.20170707.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
