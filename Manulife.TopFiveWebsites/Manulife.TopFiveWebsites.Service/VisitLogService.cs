@@ -17,6 +17,8 @@ namespace Manulife.TopFiveWebsites.Service
     {
         protected readonly IDataStoreRepository _dataStoreRepository;
         protected readonly IExclusionEntryRepository _exclusionEntryRepository;
+        //4 hr time-out on exclusion list retrieved from resetful api
+        protected TimeSpan _visitLogExclusionLifetime = new TimeSpan(4, 0, 0);
 
         public VisitLogService(IExclusionEntryRepository exclusionEntryRepository, IDataStoreRepository dataStoreRepository)
         {
@@ -24,9 +26,22 @@ namespace Manulife.TopFiveWebsites.Service
             _dataStoreRepository = dataStoreRepository;
         }
 
-        public void PersistExclusionEntries()
+        public void PersistExclusionEntries(bool forceRefresh)
         {
-            //get exclusion fro restful resource
+            if(! forceRefresh)
+            {
+                //get latest refresh time for exclusion entry
+                var lastRefreshDatetime = _dataStoreRepository.GetEntities<VisitLogExclusion>()
+                    .OrderByDescending(e => e.createdOn)
+                    .Select(e => e.createdOn)
+                    .FirstOrDefault();
+
+                //if refresh within 4 hr before, do nothing to prevent too many restful resource traffic
+                if (DateTime.Now.Subtract(lastRefreshDatetime) < _visitLogExclusionLifetime)
+                    return;
+            }
+
+            //get exclusion entry from restful resource
             var exclusionEntries = _exclusionEntryRepository.GetEntities<ExclusionEntry>();
 
             var visitLogEntities = Mapper.Map<IList<ExclusionEntry>, IList<VisitLogExclusion>>(exclusionEntries.ToList());
@@ -60,6 +75,16 @@ namespace Manulife.TopFiveWebsites.Service
             }
 
             return _dataStoreRepository.SaveChanges();
+        }
+
+        public void ResetVisitLog()
+        {
+            _dataStoreRepository.TruncateStore<VisitLog>();
+        }
+
+        public void ResetVisitLogExclusion()
+        {
+            _dataStoreRepository.TruncateStore<VisitLogExclusion>();
         }
     }
 }

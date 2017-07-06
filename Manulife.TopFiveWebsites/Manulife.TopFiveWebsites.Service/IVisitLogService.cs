@@ -9,7 +9,9 @@ namespace Manulife.TopFiveWebsites.Service
 {
     public interface IVisitLogService
     {
-        void PersistExclusionEntries();
+        void PersistExclusionEntries(bool forceRefresh);
         int ImportVisitLogSource(TextReader reader);
+        void ResetVisitLog();
+        void ResetVisitLogExclusion();
     }
 }

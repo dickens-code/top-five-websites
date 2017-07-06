@@ -33,7 +33,7 @@ namespace Manulife.TopFiveWebsites.Web.Controllers
                 searchDate = DateTime.Now.Date;
 
             //persist exclusion entries to db so as to leverage db-side optimization
-            _visitLogService.PersistExclusionEntries();
+            _visitLogService.PersistExclusionEntries(false);
 
             //search top websites
             var result = _searchService.AggregateByDate(searchDate, request.Length);
