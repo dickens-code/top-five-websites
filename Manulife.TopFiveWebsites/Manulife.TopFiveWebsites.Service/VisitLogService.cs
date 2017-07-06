@@ -52,7 +52,9 @@ namespace Manulife.TopFiveWebsites.Service
                 {
                     date = csvReader.GetField<DateTime>(nameof(VisitLog.date)),
                     website = csvReader.GetField<string>(nameof(VisitLog.website)),
-                    visits = csvReader.GetField<int>(nameof(VisitLog.visits))
+                    visits = csvReader.GetField<int>(nameof(VisitLog.visits)),
+                    createdBy = "dataImporter",
+                    createdOn = DateTime.Now
                 };
                 _dataStoreRepository.AddEntity(visitLog);
             }
