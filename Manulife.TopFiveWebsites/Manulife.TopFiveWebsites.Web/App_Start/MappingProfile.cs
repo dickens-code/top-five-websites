@@ -18,7 +18,7 @@ namespace Manulife.TopFiveWebsites.Web.App_Start
             CreateMap<WebsiteStatistics, WebsiteStatisticsViewModel>()
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.Date));
             CreateMap<ExclusionEntry, VisitLogExclusion>()
-                .ForMember(dest => dest.createdBy, opt => opt.UseValue("webappuser"))
+                .ForMember(dest => dest.createdBy, opt => opt.MapFrom(src => HttpContext.Current.User.Identity.Name))
                 .ForMember(dest => dest.createdOn, opt => opt.UseValue(DateTime.Now));
             CreateMap<UserProfile, User>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.userId))
