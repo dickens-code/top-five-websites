@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 using AutoMapper;
 using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Repository;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Manulife.TopFiveWebsites.Service
 {
@@ -36,6 +39,25 @@ namespace Manulife.TopFiveWebsites.Service
             _dataStoreRepository.TruncateStore<VisitLogExclusion>();
 
             _dataStoreRepository.SaveChanges();
+        }
+
+        public int ImportVisitLogSource(TextReader reader)
+        {
+            var csvReader = new CsvReader(reader, new CsvConfiguration { Delimiter = "|" });
+
+            //for large csv file, read row by row to prevent memory peak
+            while(csvReader.Read())
+            {
+                var visitLog = new VisitLog
+                {
+                    date = csvReader.GetField<DateTime>(nameof(VisitLog.date)),
+                    website = csvReader.GetField<string>(nameof(VisitLog.website)),
+                    visits = csvReader.GetField<int>(nameof(VisitLog.visits))
+                };
+                _dataStoreRepository.AddEntity(visitLog);
+            }
+
+            return _dataStoreRepository.SaveChanges();
         }
     }
 }

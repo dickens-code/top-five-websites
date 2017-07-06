@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="SearchServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisitLogServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
