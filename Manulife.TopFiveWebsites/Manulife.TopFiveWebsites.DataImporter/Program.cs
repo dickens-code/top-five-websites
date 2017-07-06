@@ -36,7 +36,7 @@ namespace Manulife.TopFiveWebsites.DataImporter
                 var csvFilePath = Path.Combine(dataFolderPath, dataFilename);
                 if (!File.Exists(csvFilePath))
                 {
-                    Console.WriteLine($"File not exists - {csvFilePath}");
+                    Console.Error.WriteLine($"File not exists - {csvFilePath}");
                     return;
                 }
 
@@ -57,8 +57,8 @@ namespace Manulife.TopFiveWebsites.DataImporter
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"!!!ERROR - {ex.Message}");
-                Console.WriteLine(ex.ToString());
+                Console.Error.WriteLine($"!!!ERROR - {ex.Message}");
+                Console.Error.WriteLine(ex.ToString());
             }
         }
     }
