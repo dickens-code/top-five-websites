@@ -25,7 +25,7 @@ Here is the high level architecture:
 + `Manulife.TopFiveWebsites.Service.Test`, `Manulife.TopFiveWebsites.Repository.Test` - Unit test projects with MS unit test framework and Moq framework
 
 Feature highlights:
-+ Responsive grid technology `datatables.net` - feature-rich grid presentation and large community support
++ Responsive grid technology `datatables.net` - feature-rich grid presentation and large community support. Date time picker, column sorting, top X website selection.
 + Cloud service (Azure) deployment - easily scalable and re-deployable
 + Authentication - Forms authentication is implemented
 + Dependency injection - Ninject is used as IoC container, facilitating unit testing where dependent objects can be mocked up to control area of code being analysed
