@@ -3,7 +3,7 @@ This repository contains TWO main .NET applications and their corresponding libr
 Azure app serivce details:
 + App service name: TopFiveWebsites
 + Web app url: http://topfivewebsites.azurewebsites.net/
-+ Test user credential: dickens.code@gmail.com / Abcd1234!
++ Test user credential: `dickens.code@gmail.com` / `Abcd1234!`
 + SQL server: topfivewebsitesdbserver.database.windows.net
 + SQL database: TopFiveWebsites
 
@@ -14,7 +14,7 @@ Azure web job details:
 `data.csv` file drop details:
 + Ftp site: ftp://waws-prod-hk1-023.ftp.azurewebsites.windows.net
 + File location: /data/csv/data.csv
-+ Upload credential: dickens / Abcd1234!
++ Upload credential: `TopFiveWebsites\dickens` / `Abcd1234!`
 
 Here is the high level architecture:
 + `Manulife.TopFiveWebsites.Web` - A ASP.net MVC5 application presumably hosted in MS IIS or Azure app service. It contains all the layout/web pages ready to be browsed and consumed by users. This is the main entry point for application users.
