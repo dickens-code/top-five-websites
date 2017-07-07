@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     //init datatable
-	$("#top-results-grid").DataTable({
+	var table = $("#top-results-grid").DataTable({
 		processing: true,
         serverSide: true,
         language: {
-            lengthMenu: "Top _MENU_ Websites",
-            search: "As Of"
+            lengthMenu: "Top&nbsp;&nbsp;_MENU_&nbsp;&nbsp;Websites&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+            search: "As Of&nbsp;&nbsp;"
         },
         lengthMenu: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]],
         pageLength: 5,
@@ -22,7 +22,21 @@
             { data: "TotalVisits", type: "num-fmt", render: app.renderNumber }
         ],
         orderMulti: false,
-        order: [[2, 'desc']]
+        order: [[2, "desc"]],
+        buttons: [
+            "copy", "csv", "print"
+        ],
+        initComplete: function () {
+            //console.log(this.api().buttons().container()[0].nodeName);
+
+            //show export buttons
+            this.api().buttons().container().appendTo("#top-results-grid_wrapper .dataTables_length:eq(0)");
+
+            //style export buttons
+            $(".buttons-copy").addClass("btn-info").addClass("btn-sm");
+            $(".buttons-csv").addClass("btn-success").addClass("btn-sm");
+            $(".buttons-print").addClass("btn-primary").addClass("btn-sm");
+        }
     });
 
     //init date picker to search input box
