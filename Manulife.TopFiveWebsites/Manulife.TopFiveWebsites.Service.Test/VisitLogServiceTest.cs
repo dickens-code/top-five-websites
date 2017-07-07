@@ -1,4 +1,5 @@
-﻿using Manulife.TopFiveWebsites.Entity;
+﻿using Manulife.TopFiveWebsites.Service;
+using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Repository;
 using Manulife.TopFiveWebsites.Repository.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CsvHelper;
+using CsvHelper.TypeConversion;
 
 namespace Manulife.TopFiveWebsites.Service.Test
 {
@@ -18,14 +21,13 @@ namespace Manulife.TopFiveWebsites.Service.Test
         [TestMethod]
         public void ImportVisitLogSource_WithCsvText_ReturnsVisitLogEntities()
         {
-            //set up data store repo
+            //set up repo
             var visitLogEntities = new List<VisitLog>();
             var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
             dataStoreRepositoryMock.Setup(x => x.AddEntity(It.IsAny<VisitLog>())).Callback<VisitLog>(l => visitLogEntities.Add(l));
             dataStoreRepositoryMock.Setup(x => x.SaveChanges()).Returns(() => visitLogEntities.Count);
-
-            //set up exclusion entry repo
             var exclusionEntryRepositoryMock = new Mock<IExclusionEntryRepository>();
+            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
 
             //simulate csv data input
             var csvDataReader = new StringReader(@"date|website|visits
@@ -39,7 +41,6 @@ namespace Manulife.TopFiveWebsites.Service.Test
 2016-01-06|www.google.com|26165099");
 
             //parse data and save
-            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
             var count = visitLogService.ImportVisitLogSource(csvDataReader);
 
             Assert.AreEqual(visitLogEntities.Count, count);
@@ -50,6 +51,68 @@ namespace Manulife.TopFiveWebsites.Service.Test
             Assert.AreEqual(new DateTime(2016, 1, 27), visitLogEntities[5].date);
             Assert.AreEqual("www.ebay.com.au", visitLogEntities[5].website);
             Assert.AreEqual(23154653, visitLogEntities[5].visits);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(CsvMissingFieldException), "Fields 'visits' do not exist in the CSV file.")]
+        public void ImportVisitLogSource_WithCsvWrongHeading_ThrowsException()
+        {
+            //set up repo
+            var visitLogEntities = new List<VisitLog>();
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.AddEntity(It.IsAny<VisitLog>())).Callback<VisitLog>(l => visitLogEntities.Add(l));
+            var exclusionEntryRepositoryMock = new Mock<IExclusionEntryRepository>();
+            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
+
+            //simulate csv data input
+            var csvDataReader = new StringReader(@"date|website|vi0sits
+2016-01-06|www.bing.com|14065457");
+
+            //parse data and save
+            var count = visitLogService.ImportVisitLogSource(csvDataReader);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(CsvTypeConverterException), "The conversion cannot be performed.")]
+        public void ImportVisitLogSource_WithCsvWrongDataFormat_ThrowsException()
+        {
+            //set up repo
+            var visitLogEntities = new List<VisitLog>();
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            dataStoreRepositoryMock.Setup(x => x.AddEntity(It.IsAny<VisitLog>())).Callback<VisitLog>(l => visitLogEntities.Add(l));
+            var exclusionEntryRepositoryMock = new Mock<IExclusionEntryRepository>();
+            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
+
+            //simulate csv data input
+            var csvDataReader = new StringReader(@"date|website|visits
+2016-01-06|www.bing.com|1406aa5457");
+
+            //parse data and save
+            var count = visitLogService.ImportVisitLogSource(csvDataReader);
+        }
+
+        [TestMethod()]
+        public void ResetVisitLog_NoParam_InvokesTruncateOnce()
+        {
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            var exclusionEntryRepositoryMock = new Mock<IExclusionEntryRepository>();
+            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
+
+            visitLogService.ResetVisitLog();
+
+            dataStoreRepositoryMock.Verify(x => x.TruncateStore<VisitLog>(), Times.Once);
+        }
+
+        [TestMethod()]
+        public void ResetVisitLogExclusion_NoParam_InvokesTruncateOnce()
+        {
+            var dataStoreRepositoryMock = new Mock<IDataStoreRepository>();
+            var exclusionEntryRepositoryMock = new Mock<IExclusionEntryRepository>();
+            var visitLogService = new VisitLogService(exclusionEntryRepositoryMock.Object, dataStoreRepositoryMock.Object);
+
+            visitLogService.ResetVisitLogExclusion();
+
+            dataStoreRepositoryMock.Verify(x => x.TruncateStore<VisitLogExclusion>(), Times.Once);
         }
     }
 }
