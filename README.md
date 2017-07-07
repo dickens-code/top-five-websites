@@ -21,15 +21,16 @@ Here is the high level architecture:
 + `Manulife.TopFiveWebsites.DataImporter` - A .NET console app possibly triggered by Windows Scheduler or hosted in Azure Web Job with CRON schedule definition. It scans the configured data folder for `data.csv` file every 30 seconds, parse it with CsvHelper library and persist them into data store
 + `Manulife.TopFiveWebsites.Service` - A business logic layer to consolidate input from users and manipulate data store entities in order to generate useful output. The `SearchService` aggregates website visit log results and handle data grid operations. The `VisitLogService` manipulates visit logs and exclusion entries. The `LoginService` handles user login and logout actions.
 + `Manulife.TopFiveWebsites.Repository` - A data access layer to communicate with data store (via ORM Entity Framework) or to retrieve Restful resource (ie. exclusion list)
++ `Manulife.TopFiveWebsites.Service.Interface`, `Manulife.TopFiveWebsites.Repository.Interface` - interface definitions
 + `Manulife.TopFiveWebsites.Entity` - ORM layer to map db models to object models
 + `Manulife.TopFiveWebsites.Service.Test`, `Manulife.TopFiveWebsites.Repository.Test` - Unit test projects with MS unit test framework and Moq framework
 
 Feature highlights:
 + Responsive grid technology `datatables.net` - feature-rich grid presentation and large community support. Date time picker, column sorting, top X website selection.
 + Cloud service (Azure) deployment - easily scalable and re-deployable
-+ Authentication - Forms authentication is implemented
++ Authentication - Forms authentication is implemented. User profiles are stored in data store.
++ Dependency inversion - interface definitions (`Manulife.TopFiveWebsites.Service.Interface`, `Manulife.TopFiveWebsites.Repository.Interface`) are explicitly teared out from implementation assemblies so that higher level module (eg. `Manulife.TopFiveWebsites.Service`) and implementation assembly (eg. `Manulife.TopFiveWebsites.Repository`) both depend on abstraction/interface (eg. `Manulife.TopFiveWebsites.Repository.Interface`).
 + Dependency injection - Ninject is used as IoC container, facilitating unit testing where dependent objects can be mocked up to control area of code being analysed
-+ Dependency inversion
 + ORM layer - Entity Framework is used
 
 Deployment instructions
@@ -50,4 +51,4 @@ Assumptions:
 Futher improvements:
 + To store and manipulate log records efficiently, it makes sense to store them into NoSQL data store eg. `Elasticsearch` which provides auto record versioning (in case records in `data.csv` may be treated as "versions") and improved search speed (even at large data volume)
 + To improve scalability and extensibility, several features can be implemented via mircoservice strategy/components. For example, scheduler can be implemented via Mesos to boost better CPU and memory management. Another area is that we can leverage NoSQL data store and build a small aggregation engine to search and consolidate visit logs, then the web app can be reduced to a thin presentation layer of the results. If, however, we go onto micro service direction, authentication can be fairly complex and we may have to seek a good way to do SSO.
-+ To remove dependency on MS IIS+ASP.NET, forms authentication should be switched to Owin cookie authentication middleware. However, the current implementation of Owin depends on Entity Framework ORM modules which would take me some time to refactor with.
++ To remove dependency on MS IIS+ASP.NET and to support modern authentication features (eg. two-factor authentication), forms authentication should be switched to Owin cookie authentication middleware. However, the current implementation of Owin in Microsoft depends on Entity Framework ORM modules which would take me some time to refactor with.
