@@ -6,8 +6,9 @@ using System.Web;
 using AutoMapper;
 using Manulife.TopFiveWebsites.Service;
 using Manulife.TopFiveWebsites.Web.ViewModels;
-using Manulife.TopFiveWebsites.Repository;
 using Manulife.TopFiveWebsites.Entity;
+using Manulife.TopFiveWebsites.Service.Interface;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Web.App_Start
 {

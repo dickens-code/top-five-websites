@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Manulife.TopFiveWebsites.Entity;
-using Manulife.TopFiveWebsites.Repository;
-using AutoMapper;
+using Manulife.TopFiveWebsites.Service.Interface;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Service
 {

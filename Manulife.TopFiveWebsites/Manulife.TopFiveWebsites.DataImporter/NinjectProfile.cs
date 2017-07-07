@@ -7,6 +7,8 @@ using Ninject.Modules;
 using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Service;
 using Manulife.TopFiveWebsites.Repository;
+using Manulife.TopFiveWebsites.Service.Interface;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.DataImporter
 {

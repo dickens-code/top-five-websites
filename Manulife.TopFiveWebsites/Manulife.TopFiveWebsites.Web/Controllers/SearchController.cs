@@ -1,5 +1,5 @@
 ﻿using DataTables.Mvc;
-using Manulife.TopFiveWebsites.Service;
+using Manulife.TopFiveWebsites.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

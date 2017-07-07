@@ -7,9 +7,10 @@ using System.IO;
 
 using AutoMapper;
 using Manulife.TopFiveWebsites.Entity;
-using Manulife.TopFiveWebsites.Repository;
 using CsvHelper;
 using CsvHelper.Configuration;
+using Manulife.TopFiveWebsites.Repository.Interface;
+using Manulife.TopFiveWebsites.Service.Interface;
 
 namespace Manulife.TopFiveWebsites.Service
 {

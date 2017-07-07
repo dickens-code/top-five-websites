@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 using Manulife.TopFiveWebsites.Entity;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Repository
 {

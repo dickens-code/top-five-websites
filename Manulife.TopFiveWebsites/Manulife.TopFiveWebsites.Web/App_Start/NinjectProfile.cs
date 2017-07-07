@@ -5,10 +5,13 @@ using System.Web;
 
 using Ninject.Modules;
 using Ninject.Web.Common;
+using RestSharp;
+
 using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Service;
 using Manulife.TopFiveWebsites.Repository;
-using RestSharp;
+using Manulife.TopFiveWebsites.Service.Interface;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Web.App_Start
 {

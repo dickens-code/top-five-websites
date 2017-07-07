@@ -2,11 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Moq;
-using Manulife.TopFiveWebsites.Repository;
-using Manulife.TopFiveWebsites.Service;
 using Manulife.TopFiveWebsites.Entity;
 using System.Collections.Generic;
 using System.Linq;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Service.Test
 {

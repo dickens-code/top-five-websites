@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Manulife.TopFiveWebsites.Service
+namespace Manulife.TopFiveWebsites.Service.Interface
 {
     public interface ISearchService
     {

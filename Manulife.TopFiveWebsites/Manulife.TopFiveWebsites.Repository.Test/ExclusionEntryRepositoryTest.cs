@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Moq;
 using RestSharp;
 
-using Manulife.TopFiveWebsites.Repository;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Repository.Test
 {

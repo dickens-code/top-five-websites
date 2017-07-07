@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Manulife.TopFiveWebsites.Repository
+namespace Manulife.TopFiveWebsites.Repository.Interface
 {
     public interface IDataStoreRepository : IReadonlyRepository, IWriteableRepository
     {

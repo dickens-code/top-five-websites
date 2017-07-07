@@ -1,5 +1,6 @@
 ﻿using Manulife.TopFiveWebsites.Entity;
 using Manulife.TopFiveWebsites.Repository;
+using Manulife.TopFiveWebsites.Repository.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

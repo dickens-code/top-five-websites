@@ -1,11 +1,13 @@
-﻿using AutoMapper;
-using Manulife.TopFiveWebsites.Entity;
-using Manulife.TopFiveWebsites.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using AutoMapper;
+
+using Manulife.TopFiveWebsites.Entity;
+using Manulife.TopFiveWebsites.Repository.Interface;
 
 namespace Manulife.TopFiveWebsites.Service
 {

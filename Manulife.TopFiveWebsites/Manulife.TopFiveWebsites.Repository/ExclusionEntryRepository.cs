@@ -7,6 +7,8 @@ using System.Net.Http;
 using RestSharp;
 using Newtonsoft.Json;
 
+using Manulife.TopFiveWebsites.Repository.Interface;
+
 namespace Manulife.TopFiveWebsites.Repository
 {
     public class ExclusionEntryRepository : IExclusionEntryRepository

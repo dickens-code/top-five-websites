@@ -54,18 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStoreRepository.cs" />
-    <Compile Include="ExclusionEntry.cs" />
     <Compile Include="ExclusionEntryRepository.cs" />
-    <Compile Include="IDataStoreRepository.cs" />
-    <Compile Include="IExclusionEntryRepository.cs" />
-    <Compile Include="IWriteableRepository.cs" />
-    <Compile Include="IReadonlyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Manulife.TopFiveWebsites.Entity\Manulife.TopFiveWebsites.Entity.csproj">
       <Project>{7b4a9d0e-e5f4-4b5c-bf2e-b0b4c493c4bd}</Project>
       <Name>Manulife.TopFiveWebsites.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Repository.Interface\Manulife.TopFiveWebsites.Repository.Interface.csproj">
+      <Project>{36bd8281-e30d-4529-8e8d-f6d1203a16e8}</Project>
+      <Name>Manulife.TopFiveWebsites.Repository.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

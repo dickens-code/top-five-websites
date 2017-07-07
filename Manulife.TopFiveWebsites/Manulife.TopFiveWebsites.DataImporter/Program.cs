@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 using Ninject;
 
-using Manulife.TopFiveWebsites.Service;
+using Manulife.TopFiveWebsites.Service.Interface;
 
 namespace Manulife.TopFiveWebsites.DataImporter
 {

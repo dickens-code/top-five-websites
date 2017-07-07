@@ -73,9 +73,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Repository.Interface\Manulife.TopFiveWebsites.Repository.Interface.csproj">
+      <Project>{36bd8281-e30d-4529-8e8d-f6d1203a16e8}</Project>
+      <Name>Manulife.TopFiveWebsites.Repository.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Manulife.TopFiveWebsites.Repository\Manulife.TopFiveWebsites.Repository.csproj">
       <Project>{39AAF113-2476-4BE6-A10F-B6C31180C561}</Project>
       <Name>Manulife.TopFiveWebsites.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manulife.TopFiveWebsites.Service.Interface\Manulife.TopFiveWebsites.Service.Interface.csproj">
+      <Project>{6b4454fd-f21c-40ca-b1db-11c184f69a62}</Project>
+      <Name>Manulife.TopFiveWebsites.Service.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
