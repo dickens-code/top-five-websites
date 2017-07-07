@@ -25,8 +25,10 @@ Here is the high level architecture:
 + `Manulife.TopFiveWebsites.Entity` - ORM layer to map db models to object models
 + `Manulife.TopFiveWebsites.Service.Test`, `Manulife.TopFiveWebsites.Repository.Test` - Unit test projects with MS unit test framework and Moq framework
 
+![alt text](https://github.com/dickens-code/top-five-websites/blob/master/TopFiveWebsites-HighLevelArch.png "High level architecture")
+
 Feature highlights:
-+ Responsive grid technology `datatables.net` - feature-rich grid presentation and large community support. Date time picker, column sorting, top X website selection.
++ Responsive grid technology `datatables.net` - feature-rich grid presentation and large community support. Date time picker, column sorting, top X website selection, export buttons.
 + Cloud service (Azure) deployment - easily scalable and re-deployable
 + Authentication - Forms authentication is implemented. User profiles are stored in data store.
 + Dependency inversion - interface definitions (`Manulife.TopFiveWebsites.Service.Interface`, `Manulife.TopFiveWebsites.Repository.Interface`) are explicitly teared out from implementation assemblies so that higher level module (eg. `Manulife.TopFiveWebsites.Service`) and implementation assembly (eg. `Manulife.TopFiveWebsites.Repository`) both depend on abstraction/interface (eg. `Manulife.TopFiveWebsites.Repository.Interface`).
