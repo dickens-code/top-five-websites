@@ -1,4 +1,4 @@
-This repository contains TWO main .NET applications and their corresponding libraries. I have made them available onto Microsoft Azure http://topfivewebsites.azurewebsites.net/ as app service (web app) and web job (scheduled job). The database used is MS SQL Server and hosted in Azure SQL service.
+This repository https://github.com/dickens-code/top-five-websites contains TWO main .NET applications and their corresponding libraries. I have made them available onto Microsoft Azure http://topfivewebsites.azurewebsites.net/ as app service (web app) and web job (scheduled job). The database used is MS SQL Server and hosted in Azure SQL service.
 
 Azure app serivce details:
 + App service name: TopFiveWebsites
