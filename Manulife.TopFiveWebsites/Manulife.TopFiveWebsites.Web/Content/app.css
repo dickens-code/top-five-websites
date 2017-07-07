@@ -1,0 +1,7 @@
+﻿div.dataTables_filter input.input-sm {
+    cursor: pointer;
+    width: 100px !important;
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
+}
