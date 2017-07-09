@@ -13,7 +13,7 @@ using System.Web.Security;
 namespace Manulife.TopFiveWebsites.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly ILoginService _loginService;
 

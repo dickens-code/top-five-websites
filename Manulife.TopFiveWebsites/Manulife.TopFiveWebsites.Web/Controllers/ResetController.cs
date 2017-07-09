@@ -20,51 +20,30 @@ namespace Manulife.TopFiveWebsites.Web.Controllers
 
         public ActionResult ResetVisitLog()
         {
-            try
-            {
-                _visitLogService.ResetVisitLog();
+            _visitLogService.ResetVisitLog();
 
-                ViewBag.Message = "DONE reset visit log !";
+            ViewBag.Message = "DONE reset visit log !";
 
-                return View("Completed");
-            }
-            catch(Exception ex)
-            {
-                return Content(ex.ToString());
-            }
+            return View("Completed");
         }
 
         public ActionResult ResetVisitLogExclusion()
         {
-            try
-            {
-                _visitLogService.ResetVisitLogExclusion();
+            _visitLogService.ResetVisitLogExclusion();
 
-                ViewBag.Message = "DONE reset visit log exclusion !";
+            ViewBag.Message = "DONE reset visit log exclusion !";
 
-                return View("Completed");
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.ToString());
-            }
+            return View("Completed");
         }
 
         public ActionResult ResetVisitLogAndExclusion()
         {
-            try
-            {
-                _visitLogService.ResetVisitLog();
-                _visitLogService.ResetVisitLogExclusion();
+            _visitLogService.ResetVisitLog();
+            _visitLogService.ResetVisitLogExclusion();
 
-                ViewBag.Message = "DONE reset visit log AND exclusion !";
+            ViewBag.Message = "DONE reset visit log AND exclusion !";
 
-                return View("Completed");
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.ToString());
-            }
+            return View("Completed");
         }
     }
 }

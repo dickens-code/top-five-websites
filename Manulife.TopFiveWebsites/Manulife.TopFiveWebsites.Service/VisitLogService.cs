@@ -80,7 +80,8 @@ namespace Manulife.TopFiveWebsites.Service
 
         public void ResetVisitLog()
         {
-            _dataStoreRepository.TruncateStore<VisitLog>();
+            throw new NotImplementedException("suppose ResetVisitLog() is not coded!!!");
+            //_dataStoreRepository.TruncateStore<VisitLog>();
         }
 
         public void ResetVisitLogExclusion()

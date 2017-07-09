@@ -1,4 +1,6 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,7 @@ namespace Manulife.TopFiveWebsites.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            XmlConfigurator.Configure();
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
@@ -31,6 +34,17 @@ namespace Manulife.TopFiveWebsites.Web
                     HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(new FormsIdentity(authTicket), roles);
                 }
             }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            //log app unhandled error
+            var ex = Server.GetLastError();
+            LogManager.GetLogger(this.GetType()).Error(ex.Message, ex);
+
+            //redirect to generic error page
+            //Server.ClearError();
+            //Response.Redirect(Server.MapPath($"~/Views/Shared/Error.cshtml?message={HttpUtility.UrlEncode(ex.Message)}"));
         }
     }
 }
