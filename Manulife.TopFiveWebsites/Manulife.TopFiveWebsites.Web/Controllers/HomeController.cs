@@ -13,5 +13,11 @@ namespace Manulife.TopFiveWebsites.Web.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult RaiseError()
+        {
+            throw new ApplicationException($"Raise unhandled error at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
+        }
     }
 }
