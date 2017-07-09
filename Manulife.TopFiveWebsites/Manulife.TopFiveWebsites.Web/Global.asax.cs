@@ -9,6 +9,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 
+[assembly: XmlConfigurator(ConfigFile = "AppLog.config", Watch = true)]
 namespace Manulife.TopFiveWebsites.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -19,7 +20,6 @@ namespace Manulife.TopFiveWebsites.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            XmlConfigurator.Configure();
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
