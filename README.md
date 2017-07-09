@@ -33,6 +33,8 @@ Feature highlights:
 + Authentication - Forms authentication is implemented. User profiles are stored in data store.
 + Dependency inversion - interface definitions (`Manulife.TopFiveWebsites.Service.Interface`, `Manulife.TopFiveWebsites.Repository.Interface`) are explicitly teared out from implementation assemblies so that higher level module (eg. `Manulife.TopFiveWebsites.Service`) and implementation assembly (eg. `Manulife.TopFiveWebsites.Repository`) both depend on abstraction/interface (eg. `Manulife.TopFiveWebsites.Repository.Interface`).
 + Dependency injection - Ninject is used as IoC container, facilitating unit testing where dependent objects can be mocked up to control area of code being analysed
++ Global error handling - all unhandled errors are routed to user-friendly error details page
++ Logging framework - log4net is used
 + ORM layer - Entity Framework is used
 
 Deployment instructions
